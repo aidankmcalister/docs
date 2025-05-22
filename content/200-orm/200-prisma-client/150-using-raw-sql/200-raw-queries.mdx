@@ -8,6 +8,23 @@ metaDescription: "Learn how you can send raw SQL and MongoDB queries to your dat
 
 With Prisma ORM `5.19.0`, we have released [TypedSQL](/orm/prisma-client/using-raw-sql). TypedSQL is a new way to write SQL queries that are type-safe and even easier to add to your workflow.
 
+We strongly recommend using TypedSQL queries over the legacy raw queries described below whenever possible.
+
+:::
+
+Prisma Client supports the option of sending raw queries to your database. You may wish to use raw queries if:
+
+- you want to run a heavily optimized query
+- you require a feature that Prisma Client does not yet support (please [consider raising an issue](https://github.com/prisma/prisma/issues/new/choose))
+
+Raw queries are available for all relational databases Prisma ORM supports. In addition, from version `3.9.0` raw queries are supported in MongoDB. For more details, see the relevant sections:
+
+- [Raw queries with relational databases](#raw-queries-with-relational-databases)
+- [Raw queries with MongoDB](#raw-queries-with-mongodb)
+
+## Raw queries with relational databases
+
+For relational databases, Prisma Client exposes four methods that allow you to send raw queries. You can use:
 
 - `$queryRaw` to return actual records (for example, using `SELECT`).
 - `$executeRaw` to return a count of affected rows (for example, after an `UPDATE` or `DELETE`).
