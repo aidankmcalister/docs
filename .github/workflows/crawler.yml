@@ -20,7 +20,7 @@ jobs:
         id: check
         run: |
           echo "Comparing HEAD~1 to HEAD for content changes..."
-          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -E '^docs/|^content/' || true)
+          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -E '^content/' || true)
           if [[ -n "$CHANGED" ]]; then
             echo "Content has changed:"
             echo "$CHANGED"
@@ -34,7 +34,7 @@ jobs:
         if: steps.check.outputs.content_changed == 'true'
         uses: algolia/algoliasearch-crawler-github-actions@v1
         with:
-          crawler-name: '[Github] ${{ github.repository }} ${{ github.ref }}'
+          crawler-name: "[Github] ${{ github.repository }} ${{ github.ref }}"
           crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
           crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
           algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
